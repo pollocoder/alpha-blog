@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: [:edit, :update, :show, :destroy]
   
   def index
     @articles = Article.all
@@ -10,7 +11,6 @@ class ArticlesController < ApplicationController
   
   def edit
     #***en esta accion se crea una instance variable que recibe el parametro de id para encontrar el articulo que se quiere editar***
-    @article = Article.find(params[:id])
   end
   
   def create
@@ -30,7 +30,6 @@ class ArticlesController < ApplicationController
   def update
     #***En esta accion se crea nuevamente la instance variable que recibe el parametro de id y luego en un if statement
     #se le envia al metodo update los parametros del articulo que son titulo y descripcion
-    @article = Article.find(params[:id])
     if @article.update(article_params)
       #***Esto ocurre cuando pasa las validaciones del model***
       flash[:notice] = "Article was successfully edited"
@@ -42,11 +41,9 @@ class ArticlesController < ApplicationController
   end
   
   def show
-    @article = Article.find(params[:id])
   end
   
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
     flash[:notice] = "Article was successfully deleted"
     redirect_to articles_path
@@ -54,8 +51,13 @@ class ArticlesController < ApplicationController
   
   #***Funcion que usamos en las acciones de arriba para recibir los parametros de titulo y descripcion del form
   private
+    
     def article_params
       params.require(:article).permit(:title, :description)
+    end
+    
+    def set_article
+      @article = Article.find(params[:id])
     end
   
 end
