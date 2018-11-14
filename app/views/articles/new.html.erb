@@ -1,5 +1,14 @@
 <h1>Create an article</h1>
 
+<% if @article.errors.any? %>
+<h2>Ups! There is something happening!</h2>
+  <ul>
+    <% @article.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_for @article do |f| %>
   <p>
     <%= f.label :title %><br/>
@@ -11,6 +20,6 @@
   </p>
   <p>
     <%= f.submit %>
-  </p>
+  </p> 
 
 <% end %>
