@@ -9,12 +9,7 @@
   </head>
 
   <body>
-    <% flash.each do |name, msg| %>
-      <ul>
-        <li><%= msg %></li>
-      </ul>
-    <% end %>
-    
+    <%= render 'layouts/messages' %> <!--***Ruta del partial para mostrar el flash[:notice] de la accion create -->
     <%= yield %>
   </body>
 </html>
