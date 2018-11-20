@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     if @article.save
       #***Esto ocurre cuando pasa las validaciones del model***
-      flash[:notice] = "Article was successfully created"
+      flash[:success] = "Article was successfully created"
       redirect_to article_path(@article)
     else
       #***Cuando no pasa las validaciones del model***
@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
     #se le envia al metodo update los parametros del articulo que son titulo y descripcion
     if @article.update(article_params)
       #***Esto ocurre cuando pasa las validaciones del model***
-      flash[:notice] = "Article was successfully edited"
+      flash[:success] = "Article was successfully edited"
       redirect_to article_path(@article)
     else
       #***Cuando no pasa las validaciones del model***
@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
   
   def destroy
     @article.destroy
-    flash[:notice] = "Article was successfully deleted"
+    flash[:danger] = "Article was successfully deleted"
     redirect_to articles_path
   end
   
