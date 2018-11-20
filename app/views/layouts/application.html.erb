@@ -9,7 +9,11 @@
   </head>
 
   <body>
+    <%=render 'layouts/navigation' %>
     <%= render 'layouts/messages' %> <!--***Ruta del partial para mostrar el flash[:notice] de la accion create -->
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <%=render 'layouts/footer' %>
   </body>
 </html>
