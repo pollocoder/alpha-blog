@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
     #render plain: params[:article].inspect ***Este codigo me permite ver en el navegador los parametros enviados por el form***
     #debugger
     @article = Article.new(article_params)
-    @article.user = User.first
+    @article.user = current_user
     if @article.save
       #***Esto ocurre cuando pasa las validaciones del model***
       flash[:success] = "Article was successfully created"
